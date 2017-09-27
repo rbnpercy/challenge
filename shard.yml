@@ -1,0 +1,27 @@
+name: challenge
+version: 0.1.0
+
+authors:
+  - Robin Percy <robin@percy.pw>
+
+targets:
+  challenge:
+    main: src/challenge.cr
+
+crystal: 0.22.0
+
+license: MIT
+
+dependencies:
+  kemal:
+    github: kemalcr/kemal
+    branch: master
+
+  jwt:
+    github: crystal-community/jwt  
+
+  granite_orm:
+    github: amberframework/granite-orm
+
+  mysql:
+    github: crystal-lang/crystal-mysql

@@ -1,0 +1,15 @@
+<h1>Login </h1>
+
+<script src="https://cdn.auth0.com/js/lock/10.20/lock.min.js"></script>
+<script>
+  var lock = new Auth0Lock('Au2zCM5jf070eTZz3LGaeL2JCy0VNepQ', 'rbin.eu.auth0.com', {
+    auth: {
+      redirectUrl: 'http://localhost:6969/auth/callback',
+      responseType: 'code',
+      params: {
+        scope: 'openid email'
+      }
+    }
+  });
+</script>
+<button onclick="lock.show();">Login</button>

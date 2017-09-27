@@ -1,0 +1,30 @@
+version: 1.0
+shards:
+  db:
+    github: crystal-lang/crystal-db
+    version: 0.4.2
+
+  granite_orm:
+    github: amberframework/granite-orm
+    version: 0.7.3
+
+  jwt:
+    github: crystal-community/jwt
+    version: 0.2.2
+
+  kemal:
+    github: kemalcr/kemal
+    commit: 00981bcf4424bcaa73d439a45cb005b9a0d8114e
+
+  kilt:
+    github: jeromegn/kilt
+    version: 0.4.0
+
+  mysql:
+    github: crystal-lang/crystal-mysql
+    version: 0.3.2
+
+  radix:
+    github: luislavena/radix
+    version: 0.3.8
+
