@@ -22,7 +22,7 @@ module Challenge
   end
 
 
-######  BEGIN ROUTES FOR APP ######
+######  BEGIN ROUTES FOR APP & AUTH ######
   get "/" do
     render "src/challenge/views/home.ecr", "src/challenge/views/layouts/main.ecr"
   end
@@ -40,7 +40,6 @@ module Challenge
     env.session.object("user", user)
 
     env.redirect "/success"
-    # render "src/challenge/views/callback.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
   get "/success" do |env|
@@ -55,10 +54,25 @@ module Challenge
   get "/auth/logout" do |env|
     env.session.destroy
 
-    heads = env.response.headers.inspect
-
     render "src/challenge/views/logout.ecr", "src/challenge/views/layouts/main.ecr"
   end
+
+
+###### CHALLENGES ROUTES
+  get "/challenges" do |env|
+    user = env.session.object("user").as(UserStorableObject)
+    env.response.headers["Authorization"] = "Bearer #{user.id_token}"
+
+    heads = env.response.headers.inspect
+
+    render "src/challenge/views/challenges/index.ecr", "src/challenge/views/layouts/main.ecr"
+  end
+
+  get "/challenges/new" do |env|
+
+    render "src/challenge/views/challenges/new.ecr", "src/challenge/views/layouts/main.ecr"
+  end
+
 ######  END OF ROUTES  ######
 
 
