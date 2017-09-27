@@ -1,5 +1,5 @@
 name: challenge
-version: 0.1.0
+version: 0.2.1
 
 authors:
   - Robin Percy <robin@percy.pw>
@@ -18,7 +18,10 @@ dependencies:
     branch: master
 
   jwt:
-    github: crystal-community/jwt  
+    github: crystal-community/jwt
+
+  kemal-session:
+    github: kemalcr/kemal-session
 
   granite_orm:
     github: amberframework/granite-orm
