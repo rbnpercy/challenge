@@ -5,7 +5,24 @@
 </head>
 <body>
 
-  <%= content %>
+  <header>
+    <nav id="navbar">
+      <div class="container">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/challenges">Challenges</a></li>
+          <li><a href="/challenges/new">Post a Challenge</a></li>
+          <li><a href="/auth/logout">Logout</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <section id="main">
+    <div class="container">
+      <%= content %>
+    </div>
+  </section>
 
   <script src="/js/main.js"></script>
 </body>

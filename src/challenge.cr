@@ -2,6 +2,7 @@ require "./challenge/*"
 require "kemal"
 require "kemal-session"
 require "./auth"
+require "./user"
 
 module Challenge
 
@@ -68,6 +69,20 @@ module Challenge
     render "src/challenge/views/challenges/index.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
+  get "/challenges/:id" do |env|
+    # GET Challenge from Database - with :id
+    title = "Golang Sample"
+    render "src/challenge/views/challenges/details.ecr", "src/challenge/views/layouts/main.ecr"
+  end
+
+
+  before_get "/challenges/new" do |env|
+    user = env.session.object("user").as(UserStorableObject)
+
+    authy = User.authorised?(user.id_token)
+    raise "Unauthorized" unless authy = true
+  end
+
   get "/challenges/new" do |env|
 
     render "src/challenge/views/challenges/new.ecr", "src/challenge/views/layouts/main.ecr"
@@ -75,6 +90,10 @@ module Challenge
 
 ######  END OF ROUTES  ######
 
+  error 500 do
+
+    render "src/challenge/views/error/auth.ecr", "src/challenge/views/layouts/main.ecr"
+  end
 
   Kemal.config.port = 6969
   Kemal.run
