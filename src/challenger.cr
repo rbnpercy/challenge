@@ -3,8 +3,9 @@ require "kemal"
 require "kemal-session"
 require "./auth"
 require "./user"
+require "./challenge/models/challenge"
 
-module Challenge
+module Challenger
 
   Kemal::Session.config do |config|
     config.cookie_name = "sess_id"
@@ -66,13 +67,23 @@ module Challenge
 
     heads = env.response.headers.inspect
 
+    challenges = Challenge.all("ORDER BY id DESC")
+
+
     render "src/challenge/views/challenges/index.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
   get "/challenges/:id" do |env|
     # GET Challenge from Database - with :id
-    title = "Golang Sample"
-    render "src/challenge/views/challenges/details.ecr", "src/challenge/views/layouts/main.ecr"
+
+    if challenge = Challenge.find env.params.url["id"]
+      render("src/challenge/views/challenges/details.ecr", "src/challenge/views/layouts/main.ecr")
+    else
+      "Challenge with ID #{env.params.url["id"]} Not Found"
+      env.redirect "/challenges"
+    end
+
+    # render "src/challenge/views/challenges/details.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
 

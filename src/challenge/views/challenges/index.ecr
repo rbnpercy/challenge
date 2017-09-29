@@ -1,3 +1,10 @@
 <h1>Challenges</h1>
 
-<p><%= heads %> </p>
+<% challenges.each do |chal| %>
+  <div>
+    <h2><%= chal.title %></h2>
+    <p><%= chal.details %></p>
+    <p><b>Posted by:</b> <%= chal.posted_by %></p>
+
+  </div>
+<% end %>

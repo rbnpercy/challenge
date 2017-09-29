@@ -1,0 +1,2 @@
+mysql:
+  database: mysql://challenger:GanfG1do@localhost:3306/challenge_dev
