@@ -81,8 +81,8 @@ module Challenger
   before_get "/challenges/new" do |env|
     user = env.session.object("user").as(UserStorableObject)
 
-    authy = User.authorised?(user.id_token)
-    raise "Unauthorized" unless authy = true
+    autho = User.authorised?(user.id_token)
+    raise "Unauthorized" unless autho = true
   end
 
   get "/challenges/new" do |env|
@@ -93,7 +93,10 @@ module Challenger
 ######  END OF ROUTES  ######
 
   error 500 do
+    render "src/challenge/views/error/auth.ecr", "src/challenge/views/layouts/main.ecr"
+  end
 
+  error 401 do
     render "src/challenge/views/error/auth.ecr", "src/challenge/views/layouts/main.ecr"
   end
 

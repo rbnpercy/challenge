@@ -20,7 +20,7 @@ module Auth
 
     request = HTTP::Client.post(uri,
       headers: HTTP::Headers{"content-type" => "application/json"},
-      body: "{\"grant_type\":\"authorization_code\",\"client_id\": \"Au2zCM5jf070eTZz3LGaeL2JCy0VNepQ\",\"client_secret\": \"Gmfixos1ZTCna4wbH0txtEIXgTZZC3oBwfpe1Iq9S-QrUukXcgVoI1dW7JLnBfkB\",\"code\": \"#{id}\",\"redirect_uri\": \"http://localhost:6969/callback\"}")
+      body: "{\"grant_type\":\"authorization_code\",\"client_id\": \"Au2zCM5jf070eTZz3LGaeL2JCy0VNepQ\",\"client_secret\": \"Gmfixos1ZTCna4wbH0txtEIXgTZZC3oBwfpe1Iq9S-QrUukXcgVoI1dW7JLnBfkB\",\"code\": \"#{id}\",\"redirect_uri\": \"http://localhost:6969/auth/callback\"}")
 
     response = request.body
 

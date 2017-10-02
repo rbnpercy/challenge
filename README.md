@@ -1,18 +1,8 @@
 # challenge
 
-TODO: Write a description here
 
-## Installation
+A sample Crystal *Kemal* web application, utilising JSON Web Tokens (JWTs) for User Authentication.
 
-TODO: Write installation instructions here
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-TODO: Write development instructions here
 
 ## Contributing
 
@@ -24,4 +14,4 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) Robin Percy - creator, maintainer
+- [rbnpercy](https://github.com/rbnpercy) Robin Percy - creator, maintainer
