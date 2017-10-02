@@ -2,7 +2,7 @@
 
 <% challenges.each do |chal| %>
   <div>
-    <h2><%= chal.title %></h2>
+    <h2><a href="/challenges/<%= chal.id %>"><%= chal.title %></a></h2>
     <p><%= chal.details %></p>
     <p><b>Posted by:</b> <%= chal.posted_by %></p>
 

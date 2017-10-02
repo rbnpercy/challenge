@@ -48,8 +48,6 @@ module Challenger
     user = env.session.object("user").as(UserStorableObject)
     env.response.headers["Authorization"] = "Bearer #{user.id_token}"
 
-    heads = env.response.headers.inspect
-
     render "src/challenge/views/success.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
@@ -65,25 +63,18 @@ module Challenger
     user = env.session.object("user").as(UserStorableObject)
     env.response.headers["Authorization"] = "Bearer #{user.id_token}"
 
-    heads = env.response.headers.inspect
-
     challenges = Challenge.all("ORDER BY id DESC")
-
 
     render "src/challenge/views/challenges/index.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
   get "/challenges/:id" do |env|
-    # GET Challenge from Database - with :id
-
     if challenge = Challenge.find env.params.url["id"]
       render("src/challenge/views/challenges/details.ecr", "src/challenge/views/layouts/main.ecr")
     else
       "Challenge with ID #{env.params.url["id"]} Not Found"
       env.redirect "/challenges"
     end
-
-    # render "src/challenge/views/challenges/details.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
 
