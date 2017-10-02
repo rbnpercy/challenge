@@ -2,6 +2,7 @@
 /lib/
 /bin/
 /.shards/
-/src/app.rsa
+app.rsa
+app.rsa.pub
 /src/json_test.cr
 /src/req_test.cr
