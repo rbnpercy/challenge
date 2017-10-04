@@ -29,8 +29,8 @@ module Challenger
     render "src/challenge/views/home.ecr", "src/challenge/views/layouts/main.ecr"
   end
 
-  get "/auth/login" do
-    render "src/challenge/views/login.ecr", "src/challenge/views/layouts/main.ecr"
+  get "/auth/login" do |env|
+    env.redirect "https://rbin.eu.auth0.com/login?client=Au2zCM5jf070eTZz3LGaeL2JCy0VNepQ"
   end
 
   get "/auth/callback" do |env|
