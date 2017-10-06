@@ -1,11 +1,11 @@
 challenge
 =========
 
-A sample Crystal *Kemal* web application, utilising JSON Web Tokens (JWTs) for User Authentication.
+A sample Crystal *Kemal* web application, utilising JSON Web Tokens (JWTs) for User Authentication.  We use Auth0 to store our users, and to log them in on the frontend.  We then exchange the login data for a JWT that we can pass around our app.
 
 ## To Run:
 
-To run this sample app, you first need to create a SQL database to contain the sample data.  Create a MySQL database and user with permissions for reads and writes etc.
+Create a MySQL database and user with permissions for reads and writes etc.
 
 The quickest way to do scaffold the database is to use the database migration tool, [https://github.com/juanedi/micrate](Micrate.)
 
@@ -47,10 +47,37 @@ DROP TABLE IF EXISTS challenges;
 
 You can now run the `micrate up` command to structure the database.
 
+Open up the `src/challenger.cr` file, and update the `/login` route with your own Auth0 app credentials:
+
+~~~ crystal
+  get "/auth/login" do |env|
+    env.redirect "https://[YOUR_DOMAIN].auth0.com/login?client=[CLIENT_ID]"
+  end
+~~~  
+
+Next, you need to enter your Auth0 credentials in the file `src/auth.cr`:
+
+~~~ crystal
+uri = URI.parse("https://[YOUR_DOMAIN].auth0.com/oauth/token")
+
+    request = HTTP::Client.post(uri,
+      headers: HTTP::Headers{"content-type" => "application/json"},
+      body: "{\"grant_type\":\"authorization_code\",\"client_id\": \"[CLIENT_ID]\",\"client_secret\": \"[CLIENT_SECRET]\",\"code\": \"#{id}\",\"redirect_uri\": \"http://localhost:6969/auth/callback\"}")
+~~~
+
+Finally, open up `src/user.cr` and add your Auth0 App Secret Key as the `@@verify_key`:
+
+~~~ crystal
+@@verify_key = "[CLIENT_SECRET]"
+~~~
+
 Now, run the `shards install` command from within the application directory, and execute:
 
-  crystal run src/challenger.cr
+~~~ bash
+crystal run src/challenger.cr
+~~~
 
+The app should be up and running and authenticating users through your Auth0 account.
 
 ## Contributing
 
