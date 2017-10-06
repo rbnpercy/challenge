@@ -4,7 +4,7 @@ require "json"
 module User
   extend self
 
-  @@verify_key = "Gmfixos1ZTCna4wbH0txtEIXgTZZC3oBwfpe1Iq9S-QrUukXcgVoI1dW7JLnBfkB"
+  @@verify_key = "[CLIENT_SECRET]"
 
   def authorised?(user)
     token = user
