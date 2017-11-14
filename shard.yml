@@ -1,4 +1,4 @@
-name: challenge
+name: challenger
 version: 0.2.1
 
 authors:
@@ -6,7 +6,7 @@ authors:
 
 targets:
   challenge:
-    main: src/challenge.cr
+    main: src/challenger.cr
 
 crystal: 0.22.0
 
